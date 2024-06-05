@@ -1,18 +1,25 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProductoController;
 
-Route::get('/', function () {
-    $productos = [
-        ["nombre" => "producto 1", "precio" => 100],
-        ["nombre" => "producto 2", "precio" => 200],
-        ["nombre" => "producto 3", "precio" => 100],
-        ["nombre" => "producto 4", "precio" => 900],
-        ["nombre" => "producto 5", "precio" => 700],
-    ];
-    return view("welcome", ["productos" => $productos]);
+Route::view('/', 'welcome');
+Route::get('/productos', [ProductoController::class, 'index'])->name('productos.index');
+
+Route::get('/app', function () {
+    return view('app');
 });
 
-Route::get('/nueva-vista', function () {
-    return view('nueva-vista');
+Route::get('/navbar', function () {
+    return view('navbar');
 });
+
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::get('/bienvenida', [AuthController::class, 'bienvenida'])->name('bienvenida');
+
+
+
+
+
+
