@@ -5,8 +5,10 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductoController;
 
 Route::view('/', 'welcome');
-Route::get('/productos', [ProductoController::class, 'index'])->name('productos.index');
 
+//CRUD de productos
+Route::resource('productos', ProductoController::class);
+    
 Route::get('/app', function () {
     return view('app');
 });
